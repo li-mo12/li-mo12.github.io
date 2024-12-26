@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Merry christmas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas</title>
     <style>
+        /* 页面基础样式 */
         html, body {
             margin: 0;
+            padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden; /* 防止页面滚动条 */
+            font-family: sans-serif; /* 默认字体 */
         }
+        
         #main {
             position: absolute;
             top: 0;
@@ -17,48 +22,69 @@
             width: 100%;
             height: 100%;
         }
+        
+        /* 视频自适应屏幕 */
         #video1 {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 让视频填满整个屏幕 */
+            object-fit: cover; /* 让视频填满屏幕 */
         }
+        
+        /* 文字叠加层样式 */
         #textOverlay {
             position: absolute;
-            top: 85%; /* 将文字垂直居中 */
-            left: 50%; /* 将文字水平居中 */
-            transform: translate(-50%, -50%); /* 精确居中 */
-            color: White; /* 文字颜色 */
-            font-size: 60px; /* 文字大小 */
-            font-family: Pacifico, cursive; /* 字体 */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 给文字加阴影效果 */
-            text-align: center; /* 文字居中对齐 */
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 60px;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            word-wrap: break-word; /* 确保文字不被截断 */
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3); /* 半透明背景，确保文字在不同视频背景下都可读 */
         }
-        .hidden {
-            display: none;
+
+        /* 防止手机横屏时文字超出屏幕 */
+        @media (max-width: 600px) {
+            #textOverlay {
+                font-size: 40px;
+            }
         }
     </style>
 </head>
 <body>
     <div id="main">
-        <video id="video1" muted="muted" autoplay="autoplay" loop="loop" src="./1.mp4">
+        <!-- 视频元素，支持多个格式 -->
+        <video id="video1" muted autoplay loop playsinline>
+            <source src="1.mp4" type="video/mp4">
+            <source src="1.webm" type="video/webm">
+            <source src="1.ogv" type="video/ogg">
+            Your browser does not support the video tag.
         </video>
+        
         <!-- 文字叠加层 -->
         <div id="textOverlay">
-            <br>噗噗，大番薯 Merry christmas！
+            <br>噗噗，大番薯 Merry Christmas！
         </div>
     </div>
 
     <!-- 引入 jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- 你的 JavaScript 代码 -->
+    <!-- 确保视频在加载完成后自动播放 -->
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var video = document.getElementById("video1");
-            // 确保视频正确加载
-            if (video) {
+            
+            // 等待视频加载并播放
+            video.oncanplaythrough = function () {
                 video.play();
-            }
+            };
         });
     </script>
 </body>
