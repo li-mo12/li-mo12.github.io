@@ -36,17 +36,14 @@
         /* 文字叠加层样式 */
         #textOverlay {
             position: absolute;
-            top: 85%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 60px;
-            font-family: 'Pacifico', cursive;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            text-align: center;
-            word-wrap: break-word; /* 确保文字不被截断 */
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3); /* 半透明背景，确保文字在不同视频背景下都可读 */
+            top: 85%; /* 将文字垂直居中 */
+            left: 50%; /* 将文字水平居中 */
+            transform: translate(-50%, -50%); /* 精确居中 */
+            color: White; /* 文字颜色 */
+            font-size: 60px; /* 文字大小 */
+            font-family: Pacifico, cursive; /* 字体 */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 给文字加阴影效果 */
+            text-align: center; /* 文字居中对齐 */
         }
 
         /* 防止手机横屏时文字超出屏幕 */
